@@ -1,0 +1,46 @@
+环境要求:
+php7.3+mysql5.6/5.7 推荐5.7, 
+设置public为运行目录，thinkphp伪静态
+
+安装: 
+导入根目录dkewl.sql到数据库 
+配置config/database.php 数据库信息 
+配置extend/PHPMailer/SendEmail.php 注册发信信息 
+登录管理员账户 admin 123456 
+php中删除函数popen和proc_open （如果用户很多则不建议删除禁用，统计功能是个很鸡肋的功能，且会大量占用服务器资源）
+
+现在可以自己找回密码了
+
+用QQ发不了信的去extend/PHPMailer/SendEmail.php这里，
+在$mail -> SMTPAuth = true;//开启SMTP授权
+下面添加两行代码，就搞定了。 
+$mail -> SMTPSecure = "ssl"; //ssl加密 
+$mail -> Port = 465; //使用465端口
+
+接入其他易支付地址/view/admin/webset.html，第66行开始，复制一个，改成你的接口，改成你的名字，就好了
+
+如果出现 页面错误！请稍后再试～ ThinkPHP V6.0.3 { 十年磨一剑-为API开发设计的高性能框架 } - 官方手册  说明你没有正确的连接上数据库
+
+
+如果出现音乐不停地加载失败，你可以访问笒鬼鬼接口 musicapi.cenguigui.cn 看看我这边是否正常 
+如果我这边正常，那么就是你添加的音乐是版权音乐，或者授权域名写错了 ，经常有人非要在授权域名后面加个/
+如果后台测试可以播放，但是插入其他网站播放不了，那么请把你的音乐网站开启ssl
+
+开放了添加qq接口文件，以下是修改方式
+
+public/qqlogin/comm/database.php 修改qq互联配置和数据库配置,需要你自己申请QQ互联
+
+app/controller/admin.php 第60行和第86行  把我的网址改成你自己的
+
+登陆管理页面  你的网址/qqlogin/qq/manage.php 密码111333  把回调地址改成你自己的，或者在数据库直接改也行 
+
+这个密码111333 可以在public/qqlogin/comm/database.php里修改
+
+
+二开内容：
+修复播放器接口问题，把接口本地化，但是集成外链播放器接口就不本地化了，我花钱找人写的理解下，修复外链播放器失败问题，替换掉原来的接口
+扒梨花的前端ui
+美化登录页面
+
+更多精品资源下载https://www.xuezuoweb.com/
+
